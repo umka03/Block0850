@@ -24,12 +24,13 @@ jobs:
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses
 
-      # 🔽 BU ADIM KRİTİK (jar otomatik indiriliyor)
-      - name: Download Gradle Wrapper JAR
+      # ✅ GERÇEK gradle-wrapper.jar BURADA
+      - name: Prepare Gradle Wrapper
         run: |
           mkdir -p gradle/wrapper
-          curl -L https://raw.githubusercontent.com/gradle/gradle/v7.6/gradle/wrapper/gradle-wrapper.jar \
-            -o gradle/wrapper/gradle-wrapper.jar
+          curl -L https://services.gradle.org/distributions/gradle-7.6-bin.zip -o gradle.zip
+          unzip -q gradle.zip
+          cp gradle-7.6/lib/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.jar
 
       - name: Build Debug APK (Gradle Wrapper)
         run: |
