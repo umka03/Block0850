@@ -1,4 +1,3 @@
-
 name: Build APK
 
 on:
@@ -19,10 +18,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
       - name: Install Gradle
         run: |
           sudo apt-get update
           sudo apt-get install -y gradle
+
+      - name: Accept licenses
+        run: yes | sdkmanager --licenses
 
       - name: Build Debug APK
         run: gradle assembleDebug
@@ -32,5 +37,3 @@ jobs:
         with:
           name: app-debug
           path: app/build/outputs/apk/debug/app-debug.apk
-
-
