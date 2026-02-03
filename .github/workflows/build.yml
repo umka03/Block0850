@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -23,6 +23,13 @@ jobs:
 
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses
+
+      # 🔽 BU ADIM KRİTİK (jar otomatik indiriliyor)
+      - name: Download Gradle Wrapper JAR
+        run: |
+          mkdir -p gradle/wrapper
+          curl -L https://raw.githubusercontent.com/gradle/gradle/v7.6/gradle/wrapper/gradle-wrapper.jar \
+            -o gradle/wrapper/gradle-wrapper.jar
 
       - name: Build Debug APK (Gradle Wrapper)
         run: |
