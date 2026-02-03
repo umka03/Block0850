@@ -24,6 +24,7 @@ jobs:
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses
 
+      # ✅ GERÇEK ve DOĞRU gradle-wrapper.jar
       - name: Prepare Gradle Wrapper
         run: |
           mkdir -p gradle/wrapper
